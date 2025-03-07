@@ -1,46 +1,80 @@
+/* General Styling */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #222;
+    color: white;
+    margin: 0;
 }
 
+/* Container */
 .container {
     margin-top: 20px;
 }
 
-#display {
-    font-size: 30px;
+/* Heading */
+h1 {
+    font-size: 32px;
     font-weight: bold;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 20px auto;
-    width: 300px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    color: #f5a623;
 }
 
+/* Display Box */
+#display {
+    font-size: 60px;
+    font-weight: bold;
+    padding: 20px;
+    background-color: #f5a623;
+    color: black;
+    border-radius: 15px;
+    margin: 20px auto;
+    width: 350px;
+    box-shadow: 2px 2px 15px rgba(255, 165, 0, 0.8);
+}
+
+/* Number Grid */
 .number-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 5px;
-    width: 50%;
-    margin: 0 auto;
+    width: 60%;
+    margin: 20px auto;
+    background: #333;
+    padding: 10px;
+    border-radius: 10px;
 }
 
+/* Number Box */
 .number-box {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     font-weight: bold;
-    border: 2px solid #333;
+    border: 2px solid #f5a623;
     border-radius: 5px;
-    background-color: white;
+    background-color: #444;
+    color: white;
+    transition: 0.3s;
 }
 
+/* Highlighted Number */
 .highlight {
     background-color: green;
     color: white;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    background: #111;
+    padding: 10px;
+    font-size: 14px;
+}
+
+footer a {
+    color: #f5a623;
+    text-decoration: none;
 }
