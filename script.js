@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } while (generatedNumbers.has(randomNumber));
 
             generatedNumbers.add(randomNumber);
-            display.textContent = `Number: ${randomNumber}`;
+            display.textContent = `🎲 ${randomNumber} 🎲`;
 
             // Change color of the selected number in the grid
             document.getElementById(`num-${randomNumber}`).classList.add("highlight");
