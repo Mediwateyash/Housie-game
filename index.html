@@ -7,9 +7,155 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <button
+        type="button"
+        id="create-game-toggle"
+        class="top-toggle-btn create-game-btn"
+        aria-expanded="false"
+        aria-controls="create-game-panel"
+        aria-label="Toggle Create Game"
+        title="Create Game & Prize Calculator"
+    >
+        <span class="create-icon" aria-hidden="true">+</span>
+        <span>Create Game</span>
+    </button>
+
+    <aside id="create-game-panel" class="left-drawer" aria-label="Create Game and Prize Calculator" hidden>
+        <div class="previous-header">
+            <span class="previous-title">Create Game</span>
+            <button type="button" id="reset-game-btn" class="ticket-clear-btn" title="Clear called numbers for a new round">Reset Board</button>
+        </div>
+
+        <div class="create-grid-inputs">
+            <label class="field-group">
+                <span class="field-label">No. of People</span>
+                <input type="number" id="people-count" class="calc-input" min="1" step="1" value="10">
+            </label>
+            <label class="field-group">
+                <span class="field-label">Amount (pp)</span>
+                <input type="number" id="amount-pp" class="calc-input" min="0" step="any" value="100">
+            </label>
+            <label class="field-group">
+                <span class="field-label">Winning Count</span>
+                <input type="number" id="winning-count" class="calc-input" min="1" max="10" step="1" value="6" title="Number of active winning types">
+            </label>
+        </div>
+
+        <div class="total-summary-box">
+            <div class="total-row">
+                <span>Total Pool</span>
+                <strong id="total-pool-value">1,000</strong>
+            </div>
+            <div class="total-subrow">
+                <span>Main Winner: <strong id="main-winner-value">350</strong></span>
+                <span>Others (<span id="other-winners-count">5</span>): <strong id="other-winners-value">650</strong></span>
+            </div>
+        </div>
+
+        <div class="split-toolbar">
+            <span class="previous-title">Winning Types</span>
+            <div class="split-actions">
+                <button type="button" id="auto-split-btn" class="mini-btn active">Auto Split</button>
+                <button type="button" id="equal-split-btn" class="mini-btn">Equal Split</button>
+            </div>
+        </div>
+
+        <div id="prize-types-list" class="prize-types-list"></div>
+
+        <form id="custom-type-form" class="custom-type-form">
+            <input
+                type="text"
+                id="custom-type-input"
+                class="ticket-input"
+                placeholder="Add custom type (e.g. Corners)"
+                maxlength="28"
+                autocomplete="off"
+            >
+            <button type="submit" id="add-custom-type-btn" class="ticket-check-btn">Add</button>
+        </form>
+
+        <div id="allocation-note" class="allocation-note" aria-live="polite"></div>
+    </aside>
+
+    <button
+        type="button"
+        id="menu-toggle"
+        class="top-toggle-btn hamburger-btn"
+        aria-expanded="false"
+        aria-controls="previous-panel"
+        aria-label="Toggle Menu"
+        title="Previous 5 & Check Ticket"
+    >
+        <span class="hamburger-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span class="hamburger-label">Menu</span>
+    </button>
+
+    <aside id="previous-panel" class="side-drawer" aria-label="Previous numbers and ticket checker" hidden>
+        <div class="previous-block">
+            <div class="previous-header">
+                <span class="previous-title">Previous 5</span>
+                <span class="previous-subtitle" id="previous-subtitle">Latest first</span>
+            </div>
+            <div class="previous-numbers" id="previous-numbers">
+                <div class="prev-box empty">-</div>
+                <div class="prev-box empty">-</div>
+                <div class="prev-box empty">-</div>
+                <div class="prev-box empty">-</div>
+                <div class="prev-box empty">-</div>
+            </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <div class="ticket-section">
+            <div class="previous-header">
+                <span class="previous-title">Check Ticket</span>
+                <button type="button" id="clear-ticket-btn" class="ticket-clear-btn">Clear</button>
+            </div>
+            <form id="ticket-form" class="ticket-form">
+                <input
+                    type="text"
+                    id="ticket-input"
+                    class="ticket-input"
+                    inputmode="numeric"
+                    placeholder="Number (1-100)"
+                    aria-label="Ticket number"
+                    autocomplete="off"
+                >
+                <button type="submit" id="check-ticket-btn" class="ticket-check-btn">Check</button>
+            </form>
+            <div id="ticket-status" class="ticket-status" aria-live="polite"></div>
+            <div id="ticket-entries" class="ticket-entries"></div>
+        </div>
+    </aside>
+
     <div class="container">
         <h1>Tambola Number Generator</h1>
         <div id="display">Press SPACEBAR</div>
+        <div class="auto-controls" aria-label="Auto number controls">
+            <span class="auto-label">Auto:</span>
+            <button type="button" class="delay-btn active" data-delay="3">3s</button>
+            <button type="button" class="delay-btn" data-delay="5">5s</button>
+            <label class="custom-delay-wrap" title="Custom delay in seconds (1-60)">
+                <input
+                    type="number"
+                    id="custom-delay-input"
+                    class="custom-delay-input"
+                    min="1"
+                    max="60"
+                    step="1"
+                    placeholder="sec"
+                    aria-label="Custom auto delay in seconds"
+                >
+                <span class="custom-delay-unit">s</span>
+            </label>
+            <button type="button" id="auto-start-btn" class="auto-action-btn start">Start</button>
+            <button type="button" id="auto-stop-btn" class="auto-action-btn stop" disabled>Stop</button>
+        </div>
         <div class="number-grid" id="grid"></div>
     </div>
 
